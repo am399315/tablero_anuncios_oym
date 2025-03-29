@@ -1,0 +1,218 @@
+/* src/App.css */
+
+:root {
+  /* Colores de la Universidad OyM */
+  --oym-primary: #003366;     /* Azul oscuro - Color principal */
+  --oym-secondary: #6B9AC4;   /* Azul medio - Color secundario */
+  --oym-accent: #E4A11B;      /* Dorado - Color de acento */
+  --oym-light: #F4F8FC;       /* Azul muy claro - Fondo claro */
+  --oym-dark: #001F3F;        /* Azul muy oscuro - Texto oscuro */
+  --oym-gray: #E9ECEF;        /* Gris claro - Bordes y separadores */
+}
+
+/* Estilos para modo oscuro */
+[data-bs-theme="dark"] {
+  --oym-light: #1a1d20;
+  --oym-gray: #2c3237;
+  
+  /* Ajuste de colores para el modo oscuro */
+  --bs-body-bg: #121212;
+  --bs-body-color: #e9ecef;
+  --bs-card-bg: #1e1e1e;
+  --bs-card-border-color: #343a40;
+}
+
+/* Transiciones suaves para cambios de tema */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Estilos generales */
+body {
+  background-color: var(--oym-light);
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+}
+
+/* Personalización de Bootstrap */
+.btn-primary {
+  background-color: var(--oym-primary);
+  border-color: var(--oym-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--oym-dark);
+  border-color: var(--oym-dark);
+}
+
+.btn-outline-primary {
+  color: var(--oym-primary);
+  border-color: var(--oym-primary);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--oym-primary);
+  border-color: var(--oym-primary);
+}
+
+.bg-primary {
+  background-color: var(--oym-primary) !important;
+}
+
+/* Estilos para el navbar */
+.navbar {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 0.8rem 1rem;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Estilos para las tarjetas de anuncios */
+.card {
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  height: 100%;
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajustes para el modo oscuro */
+[data-bs-theme="dark"] .card:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card-title {
+  color: var(--oym-primary);
+  font-weight: 600;
+}
+
+[data-bs-theme="dark"] .card-title {
+  color: var(--oym-secondary);
+}
+
+.card-footer {
+  background-color: white;
+  border-top: 1px solid var(--oym-gray);
+}
+
+/* Estilos para las etiquetas de categoría */
+.badge {
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 30px;
+  font-weight: 500;
+}
+
+.badge.bg-primary {
+  background-color: var(--oym-secondary) !important;
+}
+
+/* Estilo para los botones de filtro */
+.btn-group .btn {
+  margin-right: 5px;
+  border-radius: 20px;
+  margin-bottom: 5px;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.row .col-md-6 {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.row .col-md-6:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.row .col-md-6:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+/* Estilos para el formulario */
+.form-control:focus {
+  border-color: var(--oym-secondary);
+  box-shadow: 0 0 0 0.25rem rgba(107, 154, 196, 0.25);
+}
+
+.form-label {
+  color: var(--oym-primary);
+  font-weight: 500;
+}
+
+/* Estilos para el modal */
+.modal-content {
+  border-radius: 8px;
+  border: none;
+}
+
+.modal-header {
+  background-color: var(--oym-primary);
+  color: white;
+  border-radius: 8px 8px 0 0;
+}
+
+.modal-title {
+  font-weight: 600;
+}
+
+/* Ajustes para móviles */
+@media (max-width: 576px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+  }
+  
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+/* Estilo para títulos de sección */
+h1, h2, h3 {
+  color: var(--oym-primary);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+/* Sombras sutiles para contenedores */
+.container {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+/* Estilo especial para destacar anuncios importantes */
+.destacado {
+  border-left: 4px solid var(--oym-accent);
+}
+
+/* Estilos para anuncios expirados */
+.card.border-secondary {
+  border-style: dashed !important;
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+[data-bs-theme="dark"] .card.border-secondary {
+  background-color: rgba(255, 255, 255, 0.03);
+}
