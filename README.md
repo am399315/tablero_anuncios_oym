@@ -155,5 +155,5 @@ src/
 
 <div align="center">
   <p>© 2025 Universidad Dominicana O&M. Todos los derechos reservados.</p>
-  <p>💙 Desarrollado con pasión por Estudiante de Ingenieria en Sistemas Andres Escolastico 💙</p>
+  <p>💙 Desarrollado con pasión por el Estudiante de Ingenieria en Sistemas Andres Escolastico 💙</p>
 </div>
