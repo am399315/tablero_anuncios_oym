@@ -1,70 +1,159 @@
-# Getting Started with Create React App
+# 🎓 Tablero de Anuncios Universidad Dominicana O&M 🎓
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📱 Descripción General 📱
 
-## Available Scripts
+Bienvenido a la documentación oficial del **Tablero de Anuncios Digital** de la Universidad Dominicana O&M, una aplicación web de vanguardia desarrollada con React que revoluciona la forma en que nuestra comunidad universitaria se mantiene informada.
 
-In the project directory, you can run:
+![Universidad O&M](https://via.placeholder.com/800x400?text=Universidad+Dominicana+O%26M)
 
-### `npm start`
+> 🚀 **Versión actual**: 2.0.1 
+> 
+> 🔗 **URL de producción**: [Ver aplicación en Vercel](https://tablero-anuncios-oym.vercel.app/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## ✨ Características Principales ✨
 
-### `npm test`
+| Característica | Descripción | Ícono |
+|----------------|-------------|-------|
+| 🖥️ **Interfaz intuitiva** | Visualización moderna con tarjetas organizadas estratégicamente | 🎯 |
+| 🔍 **Búsqueda avanzada** | Encuentra rápidamente lo que necesitas por título, contenido o autor | 🕵️ |
+| 🏷️ **Filtrado inteligente** | Organiza anuncios por categorías: Eventos, Administrativos, Académicos e Informativos | 📊 |
+| ⏱️ **Ordenamiento flexible** | Personaliza tu vista por fecha, alfabéticamente o por categoría | 📶 |
+| 🌟 **Anuncios destacados** | Sección especial para información prioritaria que no puedes perderte | 🔝 |
+| 📅 **Control de vigencia** | Sistema automático de fechas de expiración para mantener todo actualizado | ⏰ |
+| 🌓 **Tema oscuro/claro** | Adaptación visual según tus preferencias y mejora de accesibilidad | 💡 |
+| 🔔 **Sistema de notificaciones** | Indicador visual de anuncios nuevos desde tu última visita | 📣 |
+| 📲 **Compartir en redes** | Difunde fácilmente por correo, WhatsApp, Facebook y Twitter | 📤 |
+| 📱 **Diseño responsive** | Experiencia óptima en dispositivos móviles, tablets y escritorio | 🖥️ |
+| 🔐 **Panel administrativo** | Gestión de contenidos con acceso protegido para personal autorizado | ⚙️ |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🛠️ Stack Tecnológico 🛠️
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+🔷 React               → Framework principal para UI
+🔷 React Router        → Navegación fluida sin recargas
+🔷 Bootstrap           → Componentes visuales y responsividad  
+🔷 localStorage        → Persistencia de datos en navegador
+🔷 Context API         → Gestión eficiente de estados globales
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 📂 Arquitectura del Proyecto 📂
 
-### `npm run eject`
+```
+src/
+  ├── 📁 components/      # Bloques de construcción reutilizables
+  │   ├── 📄 Navbar.js
+  │   ├── 📄 NotificationBadge.js
+  │   ├── 📄 ProtectedRoute.js
+  │   ├── 📄 ShareButtons.js
+  │   └── 📄 ThemeToggle.js
+  ├── 📁 context/         # Gestión de estados globales
+  │   └── 📄 ThemeContext.js
+  ├── 📁 data/            # Capa de acceso a información
+  │   └── 📄 anuncios.js
+  ├── 📁 pages/           # Vistas principales
+  │   ├── 📄 AnuncioDetalle.js
+  │   ├── 📄 CrearAnuncio.js
+  │   ├── 📄 EditarAnuncio.js
+  │   ├── 📄 Home.js
+  │   └── 📄 Login.js
+  ├── 📁 services/        # Lógica de negocio
+  │   ├── 📄 AuthService.js
+  │   └── 📄 NotificationService.js
+  ├── 📄 App.js           # Componente raíz y configuración de rutas
+  └── 📄 index.js         # Punto de entrada de la aplicación
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🧭 Mapa de Navegación 🧭
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+| 🔗 Ruta | 📝 Descripción | 🔒 Acceso |
+|---------|---------------|-----------|
+| **/** | Página principal con listado de anuncios | 👥 Público |
+| **/anuncio/:id** | Detalle completo de un anuncio específico | 👥 Público |
+| **/login** | Acceso al sistema para administradores | 👥 Público |
+| **/crear** | Formulario para creación de nuevos anuncios | 👤 Solo admin |
+| **/editar/:id** | Formulario para modificar anuncios existentes | 👤 Solo admin |
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🎯 Funcionalidades por Módulo 🎯
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 🏠 Página Principal (Home)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 📊 Visualización de anuncios en formato de tarjetas interactivas
+- 🌟 Sección destacada para anuncios prioritarios
+- 🔍 Barra de búsqueda inteligente por texto
+- 🔖 Sistema de filtrado multinivel por categorías
+- 📑 Ordenamiento personalizable por múltiples criterios
+- 🆕 Indicadores visuales de contenido nuevo y expirado
 
-### Code Splitting
+### 📰 Detalle de Anuncio
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- 📝 Visualización completa del contenido y recursos multimedia
+- 📲 Suite integrada de botones para compartir en redes sociales
+- 🏷️ Indicadores de estado visual (destacado, expirado, etc)
+- ✏️ Acciones rápidas de edición y eliminación (administradores)
 
-### Analyzing the Bundle Size
+### ⚙️ Panel de Administración
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- 📝 Formularios intuitivos para gestión de contenidos
+- 🔝 Herramientas para priorización de anuncios importantes
+- 📅 Control avanzado de fechas de publicación y expiración
+- 🔐 Sistema de autenticación y autorización por roles
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 👩‍💻 Guía de Usuario 👨‍💻
 
-### Advanced Configuration
+### 🧑‍🎓 Para Visitantes:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+1. Explora todos los anuncios disponibles en la página principal
+2. Utiliza los filtros y búsqueda para encontrar información específica
+3. Accede a los detalles completos haciendo clic en cualquier anuncio
+4. Comparte información relevante a través de las redes sociales integradas
 
-### Deployment
+### 👨‍💼 Para Administradores:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. Accede al sistema con tus credenciales:
+   - 👤 **Usuario**: `admin`
+   - 🔑 **Contraseña**: `OyM2025`
 
-### `npm run build` fails to minify
+2. Gestiona el contenido con las siguientes opciones:
+   - ✅ Crear nuevos anuncios con información completa
+   - 📝 Editar anuncios existentes cuando sea necesario
+   - 🗑️ Eliminar contenido obsoleto o innecesario
+   - 🌟 Marcar/desmarcar anuncios como destacados
+   - 📅 Establecer fechas de expiración para contenido temporal
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## 🔧 Información Técnica Adicional 🔧
+
+- 💾 **Persistencia**: Los anuncios se almacenan en localStorage para mantener sesiones
+- 🛡️ **Seguridad**: Autenticación basada en tokens con expiración programada
+- 🔔 **Sistema de alertas**: Seguimiento inteligente de última visita para marcar novedades
+- ☁️ **Infraestructura**: Despliegue continuo en Vercel con integración a GitHub
+
+---
+
+## 📞 Contacto y Soporte 📞
+
+¿Necesitas ayuda? ¡Estamos para asistirte! 
+
+- 📧 **Email**: soporte-ti@udom.edu.do
+- 📱 **WhatsApp**: +1 (809) 555-1234
+- 🏢 **Oficina**: Departamento de TI, Edificio Principal, 2do Nivel
+
+---
+
+<div align="center">
+  <p>© 2025 Universidad Dominicana O&M. Todos los derechos reservados.</p>
+  <p>💙 Desarrollado con pasión por Estudiante de Ingenieria en Sistemas Andres Escolastico 💙</p>
+</div>
