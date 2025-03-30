@@ -156,6 +156,16 @@ src/
 
 # 📣 Documentación del Proyecto: Tablero de Anuncios Universidad OyM
 
+## 👨‍🎓 Información del Estudiante
+
+- **Nombre:** Andres Miguel
+- **Apellidos:** Escolastico Lara
+- **Matrícula:** 23-EISN-2-056
+- **Materia:** Programación de Dispositivos Móviles
+- **Maestro:** Kervin Marcelino Cruz Curet
+
+---
+
 ## 📝 Descripción del Proyecto
 
 El Tablero de Anuncios de la Universidad OyM es una aplicación web moderna e interactiva diseñada para centralizar y distribuir información relevante para la comunidad universitaria. Funciona como un punto único de comunicación oficial donde estudiantes, profesores y personal administrativo pueden acceder a anuncios importantes relacionados con eventos académicos, información administrativa, cambios en horarios, y otras notificaciones relevantes.
@@ -501,6 +511,11 @@ Ofrecer una versión avanzada para otras instituciones educativas con caracterí
 - 🎭 Promoción destacada de eventos de socios de la universidad
 
 ---
+
+**Elaborado por: Andres Miguel Escolastico Lara | 23-EISN-2-056**
+
+---
+
 <div align="center">
   <p>© 2025 Universidad Dominicana O&M. Todos los derechos reservados.</p>
   <p>💙 Desarrollado con pasión por el Estudiante de Ingenieria en Sistemas Andres Escolastico 💙</p>
