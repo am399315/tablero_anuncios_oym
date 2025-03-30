@@ -153,6 +153,354 @@ src/
 
 ---
 
+
+# 📣 Documentación del Proyecto: Tablero de Anuncios Universidad OyM
+
+## 📝 Descripción del Proyecto
+
+El Tablero de Anuncios de la Universidad OyM es una aplicación web moderna e interactiva diseñada para centralizar y distribuir información relevante para la comunidad universitaria. Funciona como un punto único de comunicación oficial donde estudiantes, profesores y personal administrativo pueden acceder a anuncios importantes relacionados con eventos académicos, información administrativa, cambios en horarios, y otras notificaciones relevantes.
+
+La aplicación proporciona una interfaz intuitiva y atractiva, con características avanzadas como:
+- Filtrado por categorías
+- Búsqueda de texto
+- Sistema de notificaciones
+- Soporte para compartir anuncios a través de diferentes canales
+
+El sistema también implementa un control de acceso para que solo administradores autorizados puedan crear y gestionar el contenido, garantizando así la integridad y confiabilidad de la información publicada.
+
+## 🔍 Antecedentes del Proyecto
+
+### ❓ Problemática
+
+Antes de la implementación de este proyecto, la Universidad OyM enfrentaba diversos desafíos en la comunicación institucional:
+
+- 📄 **Información dispersa**: Los anuncios se distribuían a través de múltiples canales como correos electrónicos, carteles físicos, y diferentes plataformas digitales, lo que dificultaba el acceso a la información completa.
+- 🔎 **Dificultad de búsqueda**: No existía una forma centralizada de buscar anuncios anteriores o filtrar información relevante.
+- ⏱️ **Falta de inmediatez**: Los mecanismos tradicionales de comunicación no permitían una distribución rápida de anuncios urgentes.
+- 📊 **Ausencia de seguimiento**: No había forma de saber qué anuncios habían sido vistos por los usuarios.
+- 🔄 **Gestión descentralizada**: Diferentes departamentos publicaban información sin un formato consistente o control centralizado.
+
+### 💡 Solución Propuesta
+
+Se propuso desarrollar un tablero de anuncios digital con las siguientes características clave:
+
+- 🌐 Centralización de todos los anuncios institucionales
+- 📱 Interfaz moderna, accesible desde cualquier dispositivo
+- 🗂️ Sistema de categorización y búsqueda avanzada
+- 🔐 Gestión centralizada con control de acceso
+- 🔔 Notificaciones de nuevos anuncios
+- ⭐ Capacidad para destacar información crítica
+
+## 🎯 Alcance del Proyecto
+
+El Tablero de Anuncios de la Universidad OyM abarca:
+
+### ✅ Dentro del Alcance:
+
+- 💻 Desarrollo de una plataforma web responsive con React
+- 🎨 Implementación de una interfaz de usuario intuitiva con modo claro/oscuro
+- 🔄 Sistema CRUD completo para la gestión de anuncios (Crear, Leer, Actualizar, Eliminar)
+- 🔑 Sistema de autenticación para administradores
+- 🔍 Funcionalidad de búsqueda y filtrado de anuncios
+- 📲 Compartición de anuncios vía redes sociales y correo electrónico
+- 🔔 Notificaciones de nuevos anuncios
+- 📋 Ordenamiento de anuncios según diferentes criterios
+- ⭐ Sistema de anuncios destacados para información importante
+- 📅 Fecha de expiración para anuncios temporales
+- 💾 Almacenamiento persistente local (localStorage)
+
+### ❌ Fuera del Alcance:
+
+- 🖥️ Implementación de un backend con base de datos
+- 💬 Sistema de comentarios o interacción de usuarios
+- 📱 Aplicación móvil nativa (aunque es responsive)
+- 🔔 Sistema de notificaciones push
+- 📊 Analíticas detalladas de visualización de anuncios
+- 👥 Sistema de múltiples roles (solo existe rol administrador y visitante)
+- 📎 Subida de archivos adjuntos o multimedia
+
+## 📋 Requerimientos del Proyecto
+
+### ⚙️ Requerimientos Funcionales:
+
+#### 📝 Gestión de Anuncios
+
+- **RF1.1**: El sistema debe permitir a los administradores crear nuevos anuncios.
+- **RF1.2**: El sistema debe permitir a los administradores editar anuncios existentes.
+- **RF1.3**: El sistema debe permitir a los administradores eliminar anuncios.
+- **RF1.4**: El sistema debe permitir a los administradores marcar anuncios como destacados.
+- **RF1.5**: El sistema debe permitir establecer fechas de expiración para los anuncios.
+
+#### 👁️ Visualización de Anuncios
+
+- **RF2.1**: El sistema debe mostrar todos los anuncios en la página principal.
+- **RF2.2**: El sistema debe mostrar anuncios destacados en una sección especial.
+- **RF2.3**: El sistema debe permitir ver el detalle completo de cada anuncio.
+- **RF2.4**: El sistema debe mostrar visualmente los anuncios expirados con un estilo diferenciado.
+
+#### 🔍 Búsqueda y Filtrado
+
+- **RF3.1**: El sistema debe permitir buscar anuncios por texto en título, contenido y autor.
+- **RF3.2**: El sistema debe permitir filtrar anuncios por categoría.
+- **RF3.3**: El sistema debe permitir ordenar anuncios por diferentes criterios (fecha, alfabético, categoría).
+- **RF3.4**: El sistema debe mostrar claramente los criterios de filtrado/búsqueda aplicados.
+
+#### 🔐 Autenticación y Autorización
+
+- **RF4.1**: El sistema debe proporcionar una página de inicio de sesión para administradores.
+- **RF4.2**: El sistema debe restringir la creación, edición y eliminación de anuncios solo a usuarios autenticados.
+- **RF4.3**: El sistema debe mostrar opciones de administración solo a usuarios autenticados.
+
+#### 🖥️ Experiencia de Usuario
+
+- **RF5.1**: El sistema debe proporcionar un modo oscuro/claro para mejorar la accesibilidad.
+- **RF5.2**: El sistema debe ser compatible con dispositivos móviles (responsive).
+- **RF5.3**: El sistema debe permitir compartir anuncios por correo y redes sociales.
+- **RF5.4**: El sistema debe notificar sobre nuevos anuncios desde la última visita.
+
+### 🔧 Requerimientos No Funcionales:
+
+#### 👤 Usabilidad
+
+- **RNF1.1**: La interfaz debe ser intuitiva y fácil de navegar.
+- **RNF1.2**: El tiempo de aprendizaje para nuevos usuarios debe ser mínimo.
+- **RNF1.3**: La aplicación debe ser compatible con los principales navegadores (Chrome, Firefox, Safari, Edge).
+
+#### ⚡ Rendimiento
+
+- **RNF2.1**: La aplicación debe cargar en menos de 3 segundos en condiciones normales.
+- **RNF2.2**: Las operaciones de búsqueda y filtrado deben ejecutarse en tiempo real.
+
+#### 🔒 Seguridad
+
+- **RNF3.1**: Las credenciales de administrador deben almacenarse de forma segura.
+- **RNF3.2**: La sesión de administrador debe expirar después de 24 horas.
+
+#### 🛠️ Mantenibilidad
+
+- **RNF4.1**: El código debe estar bien organizado y documentado.
+- **RNF4.2**: La arquitectura debe permitir fácil extensión con nuevas funcionalidades.
+
+#### 🌐 Disponibilidad
+
+- **RNF5.1**: La aplicación debe funcionar sin conexión a internet después de la carga inicial.
+
+## 🏗️ Arquitectura del Proyecto
+
+El Tablero de Anuncios de la Universidad OyM sigue una arquitectura de aplicación de una sola página (SPA) basada en componentes, utilizando React como framework principal.
+
+### 📚 Capas de la Aplicación:
+
+#### 🎨 Capa de Presentación (UI)
+
+- Componentes React para cada parte de la interfaz
+- Estilos CSS y Bootstrap para diseño responsive
+- Contextual UI (ThemeContext) para el modo oscuro/claro
+
+#### ⚙️ Capa de Lógica de Negocio
+
+- Servicios para gestión de autenticación
+- Servicios para notificaciones
+- Funciones de filtrado, búsqueda y ordenamiento
+
+#### 💾 Capa de Datos
+
+- Almacenamiento local con localStorage
+- Funciones CRUD para manipulación de datos
+
+### 📂 Estructura de Carpetas:
+
+```
+src/
+  ├── components/      # Componentes reutilizables
+  │   ├── Navbar.js
+  │   ├── NotificationBadge.js
+  │   ├── ProtectedRoute.js
+  │   ├── ShareButtons.js
+  │   └── ThemeToggle.js
+  ├── context/         # Contextos de React
+  │   └── ThemeContext.js
+  ├── data/            # Capa de acceso a datos
+  │   └── anuncios.js
+  ├── pages/           # Componentes de página
+  │   ├── AnuncioDetalle.js
+  │   ├── CrearAnuncio.js
+  │   ├── EditarAnuncio.js
+  │   ├── Home.js
+  │   └── Login.js
+  ├── services/        # Servicios de la aplicación
+  │   ├── AuthService.js
+  │   └── NotificationService.js
+  ├── App.css          # Estilos globales
+  ├── App.js           # Componente principal y rutas
+  └── index.js         # Punto de entrada
+```
+
+### 🧩 Diagrama de Componentes:
+
+```
+App
+├── ThemeProvider
+│   └── Router
+│       ├── Navbar
+│       │   ├── ThemeToggle
+│       │   └── NotificationBadge
+│       │
+│       └── Routes
+│           ├── Home
+│           │   ├── ShareButtons
+│           │   └── Modal (confirmación)
+│           ├── AnuncioDetalle
+│           │   └── ShareButtons
+│           ├── CrearAnuncio (Protegido)
+│           ├── EditarAnuncio (Protegido)
+│           └── Login
+```
+
+### 🔄 Flujo de Datos:
+
+- Los datos de anuncios se almacenan en localStorage
+- Los servicios proporcionan funciones CRUD para manipular datos
+- Las páginas utilizan estas funciones para mostrar y modificar anuncios
+- La autenticación controla quién puede modificar datos
+- El estado se mantiene en componentes usando React Hooks (useState, useEffect)
+
+## 💻 Tecnologías Utilizadas
+
+### 🖥️ Frontend:
+
+- **React**: Framework principal para la construcción de la interfaz de usuario
+- **React Router**: Para la navegación entre páginas sin recargar
+- **Bootstrap**: Framework CSS para diseño responsive
+- **Bootstrap Icons**: Biblioteca de iconos
+
+### 💾 Almacenamiento:
+
+- **localStorage**: Para persistencia de datos en el navegador
+
+### 🧰 Utilidades y Herramientas:
+
+- **Create React App**: Para la configuración inicial del proyecto
+- **npm**: Gestor de paquetes para dependencias
+- **Git/GitHub**: Control de versiones
+- **Visual Studio Code**: Editor de código
+
+### 📚 Librerías Principales:
+
+- **react-router-dom**: Navegación entre páginas
+- **bootstrap**: Estilos y componentes
+- **bootstrap-icons**: Iconografía
+
+## 📊 Diagramas del Proyecto
+
+### 🔄 Diagrama de Flujo de Usuario:
+
+```
+                  +----------------+
+                  |   Inicio       |
+                  +-------+--------+
+                          |
+                          v
+             +------------+-----------+
+             |  Ver Lista de Anuncios |
+             +------------+-----------+
+                          |
+            +-------------+-------------+
+            |                           |
+            v                           v
+   +--------+--------+         +--------+---------+
+   | Buscar/Filtrar  |         | Ver Detalle      |
+   +--------+--------+         +--------+---------+
+            |                           |
+            v                           v
+   +--------+--------+         +--------+---------+
+   | Ver Resultados  |         | Compartir Anuncio|
+   +-----------------+         +---------+--------+
+                                         |
+           +--------------------------+  |
+           |  Solo Administradores    |  |
+           +--------------------------+  |
+                      |                  |
+      +---------------v---+              |
+      |  Iniciar Sesión   |              |
+      +---------------+---+              |
+                      |                  |
+    +------+------+---+----+----+        |
+    |             |        |    |        |
+    v             v        v    v        v
++---+---+  +------+--+ +---+--+ +-+------+-+
+|Crear  |  |Editar   | |Borrar| |Destacar  |
++-------+  +---------+ +------+ +----------+
+```
+
+### 🏗️ Diagrama de Arquitectura:
+
+```
++------------------------------------------------------+
+|                     Cliente (Browser)                 |
++------------------------------------------------------+
+                           |
+                           v
++------------------------------------------------------+
+|                    React Application                  |
+|                                                      |
+|  +------------+  +------------+  +----------------+  |
+|  | Componentes|  | Páginas    |  | Rutas          |  |
+|  +------------+  +------------+  +----------------+  |
+|                                                      |
+|  +------------+  +------------+  +----------------+  |
+|  | Servicios  |  | Contextos  |  | Hooks          |  |
+|  +------------+  +------------+  +----------------+  |
+|                                                      |
++------------------------|----------------------------+
+                         |
+                         v
++------------------------------------------------------+
+|                  Browser Storage                      |
+|                                                      |
+|   +------------+  +------------+  +---------------+  |
+|   | Anuncios   |  | Usuarios   |  | Preferencias  |  |
+|   +------------+  +------------+  +---------------+  |
+|                                                      |
++------------------------------------------------------+
+```
+
+## 💰 Monetización
+
+El Tablero de Anuncios de la Universidad OyM está diseñado como una herramienta institucional sin fines de lucro directos. No está destinado para cobrar a los usuarios finales (estudiantes, profesores, personal) por su uso.
+
+### 💸 Modelo de Financiamiento:
+
+- **Financiamiento Institucional**: El desarrollo y mantenimiento del proyecto es financiado por el presupuesto de TI de la Universidad OyM como parte de la mejora de sus servicios digitales.
+- **Valor Indirecto**: Aunque no genera ingresos directamente, el proyecto proporciona valor a la institución mediante:
+  - ⏱️ Mejora en la eficiencia de comunicación
+  - 💲 Reducción de costos asociados con métodos tradicionales de comunicación (impresión, distribución)
+  - 😊 Mejora en la satisfacción de estudiantes y personal
+  - 🏢 Fortalecimiento de la imagen digital de la universidad
+
+### 🚀 Potenciales Extensiones Futuras:
+
+Si en el futuro se considerara una extensión comercial, podría incluir:
+
+#### 🏆 Versión Enterprise:
+Ofrecer una versión avanzada para otras instituciones educativas con características adicionales como:
+
+- 🔄 Integración con sistemas de gestión académica
+- 📊 Análisis avanzado de engagement
+- 🎨 Personalización con marca institucional
+
+#### 🛠️ Servicios Adicionales:
+
+- ⚙️ Implementación y configuración personalizada
+- 🆘 Soporte técnico premium
+- 👨‍🏫 Capacitación para administradores
+
+#### 📢 Anuncios Patrocinados:
+
+- 💼 Espacio para anuncios de servicios relevantes para la comunidad universitaria
+- 🎭 Promoción destacada de eventos de socios de la universidad
+
+---
 <div align="center">
   <p>© 2025 Universidad Dominicana O&M. Todos los derechos reservados.</p>
   <p>💙 Desarrollado con pasión por el Estudiante de Ingenieria en Sistemas Andres Escolastico 💙</p>
