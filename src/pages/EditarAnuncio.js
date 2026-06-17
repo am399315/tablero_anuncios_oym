@@ -1,206 +1,186 @@
 // src/pages/EditarAnuncio.js
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { obtenerAnuncioPorId, editarAnuncio } from '../data/anuncios';
+
+const CATEGORIAS = ['Informativo', 'Evento', 'Administrativo', 'Académico'];
+
+const CAT_ICONS = {
+  Informativo:    'bi-info-circle-fill',
+  Evento:         'bi-calendar-event-fill',
+  Administrativo: 'bi-building-fill',
+  Académico:      'bi-book-fill',
+};
 
 function EditarAnuncio() {
   const { id } = useParams();
   const navigate = useNavigate();
-  
-  // Estado del formulario
-  const [formData, setFormData] = useState({
-    titulo: '',
-    contenido: '',
-    autor: '',
-    categoria: '',
-    destacado: false,
-    fechaExpiracion: ''
-  });
-  
-  // Estado para manejar errores de validación
-  const [errores, setErrores] = useState({});
-  
-  // Estado para manejar si el anuncio no existe
-  const [anuncioNoEncontrado, setAnuncioNoEncontrado] = useState(false);
 
-  // Cargar los datos del anuncio al montar el componente
+  const [formData, setFormData] = useState({
+    titulo:          '',
+    contenido:       '',
+    autor:           '',
+    categoria:       '',
+    destacado:       false,
+    fechaExpiracion: '',
+  });
+
+  const [errores, setErrores]               = useState({});
+  const [noEncontrado, setNoEncontrado]     = useState(false);
+
   useEffect(() => {
     const anuncio = obtenerAnuncioPorId(id);
-    
     if (anuncio) {
       setFormData({
-        titulo: anuncio.titulo,
-        contenido: anuncio.contenido,
-        autor: anuncio.autor,
-        categoria: anuncio.categoria,
-        destacado: anuncio.destacado || false,
-        fechaExpiracion: anuncio.fechaExpiracion || ''
+        titulo:          anuncio.titulo,
+        contenido:       anuncio.contenido,
+        autor:           anuncio.autor,
+        categoria:       anuncio.categoria,
+        destacado:       anuncio.destacado || false,
+        fechaExpiracion: anuncio.fechaExpiracion || '',
       });
     } else {
-      setAnuncioNoEncontrado(true);
+      setNoEncontrado(true);
     }
   }, [id]);
 
-  // Manejar cambios en los campos del formulario
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    
-    // Si es un checkbox, usamos el valor de 'checked'
-    const newValue = type === 'checkbox' ? checked : value;
-    
-    setFormData({
-      ...formData,
-      [name]: newValue
-    });
-    
-    // Limpiar errores cuando el usuario comienza a corregir
-    if (errores[name]) {
-      setErrores({
-        ...errores,
-        [name]: null
-      });
-    }
+    setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
+    if (errores[name]) setErrores(prev => ({ ...prev, [name]: null }));
   };
 
-  // Validar el formulario antes de enviar
-  const validarFormulario = () => {
-    const nuevosErrores = {};
-    
-    if (!formData.titulo.trim()) {
-      nuevosErrores.titulo = 'El título es obligatorio';
-    }
-    
-    if (!formData.contenido.trim()) {
-      nuevosErrores.contenido = 'El contenido es obligatorio';
-    }
-    
-    if (!formData.autor.trim()) {
-      nuevosErrores.autor = 'El autor es obligatorio';
-    }
-    
-    setErrores(nuevosErrores);
-    
-    // Si no hay errores, el formulario es válido
-    return Object.keys(nuevosErrores).length === 0;
+  const validar = () => {
+    const errs = {};
+    if (!formData.titulo.trim())    errs.titulo    = 'El título es obligatorio.';
+    if (!formData.contenido.trim()) errs.contenido = 'El contenido es obligatorio.';
+    if (!formData.autor.trim())     errs.autor     = 'El autor es obligatorio.';
+    setErrores(errs);
+    return Object.keys(errs).length === 0;
   };
 
-  // Manejar el envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Validar formulario
-    if (validarFormulario()) {
-      // Editar anuncio
-      const anuncioActualizado = editarAnuncio(id, formData);
-      
-      if (anuncioActualizado) {
-        // Navegar a la página de detalle del anuncio
-        navigate(`/anuncio/${id}`);
-      }
+    if (validar()) {
+      const actualizado = editarAnuncio(id, formData);
+      if (actualizado) navigate(`/anuncio/${id}`);
     }
   };
 
-  // Si el anuncio no existe, mostrar un mensaje
-  if (anuncioNoEncontrado) {
+  if (noEncontrado) {
     return (
-      <div className="alert alert-danger" role="alert">
-        <h4>El anuncio no fue encontrado</h4>
-        <p>El anuncio que intentas editar no existe o ha sido eliminado.</p>
-        <button className="btn btn-primary" onClick={() => navigate('/')}>
-          Volver al inicio
-        </button>
+      <div className="card text-center py-5 px-4">
+        <div style={{ fontSize: '4rem', opacity: 0.35 }} className="mb-3">
+          <i className="bi bi-file-earmark-x"></i>
+        </div>
+        <h3 style={{ color: 'var(--text-secondary)' }}>Anuncio no encontrado</h3>
+        <p className="text-muted mb-4">El anuncio que intentas editar no existe o ha sido eliminado.</p>
+        <div>
+          <button className="btn btn-outline-secondary me-2" onClick={() => navigate(-1)}>
+            <i className="bi bi-arrow-left me-1"></i>Volver
+          </button>
+          <Link to="/" className="btn btn-primary">Ir al Inicio</Link>
+        </div>
       </div>
     );
   }
 
-  // Categorías disponibles
-  const categorias = ['Informativo', 'Evento', 'Administrativo', 'Académico'];
-
   return (
     <div>
-      <div className="rounded shadow-sm p-4 mb-4" 
-           style={{ 
-             backgroundImage: 'linear-gradient(135deg, rgba(0,51,102,0.95) 0%, rgba(0,31,63,0.9) 100%)',
-             borderRadius: '12px',
-             color: 'white'
-           }}>
-        <h2 className="mb-2" style={{ color: 'white' }}>
+      {/* Breadcrumb */}
+      <nav aria-label="breadcrumb" className="mb-3">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <Link to="/"><i className="bi bi-house me-1"></i>Inicio</Link>
+          </li>
+          <li className="breadcrumb-item">
+            <Link to={`/anuncio/${id}`}>Detalle</Link>
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">Editar</li>
+        </ol>
+      </nav>
+
+      {/* Page header */}
+      <div className="page-header mb-4">
+        <h2>
           <i className="bi bi-pencil-square me-2"></i>
           Editar Anuncio
         </h2>
-        <p className="lead mb-0">Modifica la información del anuncio seleccionado.</p>
+        <p>Modifica la información del anuncio seleccionado.</p>
       </div>
-      
+
       <div className="card shadow-sm">
         <div className="card-body p-4">
-          <form onSubmit={handleSubmit}>
-            {/* Campo de título */}
+          <form onSubmit={handleSubmit} noValidate>
+
+            {/* Título */}
             <div className="mb-4">
               <label htmlFor="titulo" className="form-label">
-                <i className="bi bi-type-h1 me-2"></i>
-                Título
+                <i className="bi bi-type-h1 me-2 text-oym-secondary"></i>Título
               </label>
               <input
                 type="text"
-                className={`form-control form-control-lg ${errores.titulo ? 'is-invalid' : ''}`}
+                className={`form-control form-control-lg${errores.titulo ? ' is-invalid' : ''}`}
                 id="titulo"
                 name="titulo"
                 placeholder="Escribe un título claro y conciso"
                 value={formData.titulo}
                 onChange={handleChange}
+                maxLength={120}
               />
-              {errores.titulo && (
-                <div className="invalid-feedback">{errores.titulo}</div>
-              )}
+              <div className="d-flex justify-content-between">
+                {errores.titulo
+                  ? <div className="invalid-feedback d-block">{errores.titulo}</div>
+                  : <span />}
+                <small className="form-text text-end">{formData.titulo.length}/120</small>
+              </div>
             </div>
-            
-            {/* Campo de contenido */}
+
+            {/* Contenido */}
             <div className="mb-4">
               <label htmlFor="contenido" className="form-label">
-                <i className="bi bi-text-paragraph me-2"></i>
-                Contenido
+                <i className="bi bi-text-paragraph me-2 text-oym-secondary"></i>Contenido
               </label>
               <textarea
-                className={`form-control ${errores.contenido ? 'is-invalid' : ''}`}
+                className={`form-control${errores.contenido ? ' is-invalid' : ''}`}
                 id="contenido"
                 name="contenido"
                 rows="6"
-                placeholder="Describe detalladamente el anuncio..."
+                placeholder="Describe detalladamente el anuncio…"
                 value={formData.contenido}
                 onChange={handleChange}
-                style={{ resize: 'vertical' }}
-              ></textarea>
-              {errores.contenido && (
-                <div className="invalid-feedback">{errores.contenido}</div>
-              )}
+                style={{ resize: 'vertical', minHeight: '140px' }}
+              />
+              <div className="d-flex justify-content-between">
+                {errores.contenido
+                  ? <div className="invalid-feedback d-block">{errores.contenido}</div>
+                  : <span />}
+                <small className="form-text text-end">{formData.contenido.length} caracteres</small>
+              </div>
             </div>
-            
-            <div className="row">
-              {/* Campo de autor */}
-              <div className="col-md-6 mb-4">
+
+            <div className="row g-3 mb-4">
+              {/* Autor */}
+              <div className="col-md-6">
                 <label htmlFor="autor" className="form-label">
-                  <i className="bi bi-person me-2"></i>
-                  Autor/Departamento
+                  <i className="bi bi-person-fill me-2 text-oym-secondary"></i>Autor / Departamento
                 </label>
                 <input
                   type="text"
-                  className={`form-control ${errores.autor ? 'is-invalid' : ''}`}
+                  className={`form-control${errores.autor ? ' is-invalid' : ''}`}
                   id="autor"
                   name="autor"
-                  placeholder="Nombre o departamento responsable"
+                  placeholder="Ej: Departamento de Registro"
                   value={formData.autor}
                   onChange={handleChange}
                 />
-                {errores.autor && (
-                  <div className="invalid-feedback">{errores.autor}</div>
-                )}
+                {errores.autor && <div className="invalid-feedback">{errores.autor}</div>}
               </div>
-              
-              {/* Campo de categoría */}
-              <div className="col-md-6 mb-4">
+
+              {/* Categoría */}
+              <div className="col-md-6">
                 <label htmlFor="categoria" className="form-label">
-                  <i className="bi bi-tag me-2"></i>
-                  Categoría
+                  <i className="bi bi-tag-fill me-2 text-oym-secondary"></i>Categoría
                 </label>
                 <select
                   className="form-select"
@@ -209,21 +189,22 @@ function EditarAnuncio() {
                   value={formData.categoria}
                   onChange={handleChange}
                 >
-                  {categorias.map(categoria => (
-                    <option key={categoria} value={categoria}>
-                      {categoria}
-                    </option>
+                  {CATEGORIAS.map(cat => (
+                    <option key={cat} value={cat}>{cat}</option>
                   ))}
                 </select>
-                <div className="form-text">Selecciona la categoría más apropiada para tu anuncio.</div>
+                <div className="form-text">
+                  <i className={`bi ${CAT_ICONS[formData.categoria] || 'bi-tag'} me-1`}></i>
+                  {formData.categoria}
+                </div>
               </div>
             </div>
-            
-            {/* Campo de fecha de expiración */}
+
+            {/* Fecha de expiración */}
             <div className="mb-4">
               <label htmlFor="fechaExpiracion" className="form-label">
-                <i className="bi bi-calendar-x me-2"></i>
-                Fecha de expiración (opcional)
+                <i className="bi bi-calendar-x-fill me-2 text-oym-secondary"></i>
+                Fecha de expiración <span className="text-muted fw-normal">(opcional)</span>
               </label>
               <input
                 type="date"
@@ -232,50 +213,56 @@ function EditarAnuncio() {
                 name="fechaExpiracion"
                 value={formData.fechaExpiracion}
                 onChange={handleChange}
-                min={new Date().toISOString().split('T')[0]} // La fecha mínima es hoy
+                min={new Date().toISOString().split('T')[0]}
               />
               <div className="form-text">
-                Si estableces una fecha de expiración, el anuncio aparecerá marcado como expirado después de esta fecha.
-                Si lo dejas en blanco, el anuncio no expirará nunca.
+                Si dejas este campo vacío, el anuncio no expirará nunca.
               </div>
             </div>
-            
-            {/* Opción de destacar anuncio */}
+
+            {/* Destacado */}
             <div className="mb-4">
-              <div className="form-check form-check-inline p-3 border rounded bg-light">
+              <div className="form-check p-3 rounded d-flex align-items-center gap-3"
+                style={{ background: 'var(--surface-alt)', border: '1.5px solid var(--border)', cursor: 'pointer' }}
+                onClick={() => handleChange({ target: { name: 'destacado', type: 'checkbox', checked: !formData.destacado } })}
+              >
                 <input
-                  className="form-check-input me-2"
+                  className="form-check-input flex-shrink-0"
                   type="checkbox"
                   id="destacado"
                   name="destacado"
                   checked={formData.destacado}
                   onChange={handleChange}
-                  style={{ transform: 'scale(1.2)' }}
+                  style={{ width: '1.2em', height: '1.2em', cursor: 'pointer' }}
+                  onClick={e => e.stopPropagation()}
                 />
-                <label className="form-check-label d-flex align-items-center" htmlFor="destacado">
-                  <i className="bi bi-star-fill text-warning me-2 fs-5"></i>
-                  <strong>Marcar como anuncio destacado</strong>
-                  <span className="ms-2 badge bg-warning text-dark">Destacado</span>
+                <label className="form-check-label d-flex align-items-center gap-2 mb-0" htmlFor="destacado"
+                  style={{ cursor: 'pointer' }}>
+                  <i className="bi bi-star-fill" style={{ color: 'var(--oym-accent)', fontSize: '1.1rem' }}></i>
+                  <span>
+                    <strong>Marcar como destacado</strong>
+                    <small className="d-block text-muted fw-normal">
+                      Los anuncios destacados aparecen en la sección principal del tablero.
+                    </small>
+                  </span>
+                  {formData.destacado && (
+                    <span className="badge ms-2"
+                      style={{ background: 'linear-gradient(135deg, var(--oym-accent), #C88A0A)', color: '#fff' }}>
+                      Destacado
+                    </span>
+                  )}
                 </label>
-                <div className="form-text mt-2">
-                  Los anuncios destacados aparecen en una sección especial en la parte superior de la página principal.
-                </div>
               </div>
             </div>
-            
-            {/* Botones de acción */}
-            <div className="d-flex justify-content-between mt-4">
-              <button 
-                type="button" 
-                className="btn btn-outline-secondary"
-                onClick={() => navigate(`/anuncio/${id}`)}
-              >
-                <i className="bi bi-arrow-left me-2"></i>
-                Cancelar
+
+            {/* Actions */}
+            <div className="d-flex justify-content-between align-items-center pt-2"
+              style={{ borderTop: '1px solid var(--border)' }}>
+              <button type="button" className="btn btn-outline-secondary" onClick={() => navigate(`/anuncio/${id}`)}>
+                <i className="bi bi-arrow-left me-2"></i>Cancelar
               </button>
-              <button type="submit" className="btn btn-primary px-4 py-2" style={{ backgroundColor: '#003366' }}>
-                <i className="bi bi-save me-2"></i>
-                Guardar Cambios
+              <button type="submit" className="btn btn-primary px-4">
+                <i className="bi bi-save-fill me-2"></i>Guardar Cambios
               </button>
             </div>
           </form>
