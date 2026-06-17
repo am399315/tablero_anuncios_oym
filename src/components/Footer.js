@@ -80,6 +80,29 @@ function Footer() {
             &nbsp;para la comunidad universitaria
           </span>
         </div>
+
+        {/* Developer credit */}
+        <div className="text-center mt-3 pt-3" style={{ borderTop: '1px solid rgba(255,255,255,.08)' }}>
+          <span style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            background: 'rgba(255,255,255,.06)',
+            border: '1px solid rgba(228,161,27,.25)',
+            borderRadius: '999px',
+            padding: '0.35rem 1.1rem',
+            fontSize: '0.78rem',
+            color: 'rgba(255,255,255,.60)',
+            letterSpacing: '0.02em',
+          }}>
+            <i className="bi bi-code-slash" style={{ color: '#E4A11B' }}></i>
+            Desarrollado por el
+            <strong style={{ color: 'rgba(255,255,255,.88)', fontWeight: 600 }}>
+              Ing. Andres Escolastico
+            </strong>
+            <i className="bi bi-mortarboard-fill" style={{ color: '#E4A11B' }}></i>
+          </span>
+        </div>
       </div>
     </footer>
   );
